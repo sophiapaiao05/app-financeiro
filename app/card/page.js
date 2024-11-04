@@ -41,24 +41,13 @@ const CardPage = () => {
         setTransactions([...transactions, newTransaction]);
     };
 
-    const handleEditClick = (transaction) => {
-        setIsEditing(true);
-        setCurrentTransaction(transaction);
-        setNewAmount(transaction.amount);
-    };
-
-    const handleSaveClick = () => {
-        console.log('Valor de newAmount antes de salvar:', newAmount);
-        const formattedAmount = newAmount.startsWith('R$') ? newAmount : `R$ ${newAmount}`;
+    const handleEditClick = (updatedTransaction) => {
         const updatedTransactions = transactions.map((transaction) =>
-            transaction.id === currentTransaction.id
-                ? { ...transaction, amount: formattedAmount }
+            transaction.id === updatedTransaction.id
+                ? updatedTransaction
                 : transaction
         );
         setTransactions(updatedTransactions);
-        setIsEditing(false);
-        setCurrentTransaction(null);
-        setNewAmount('');
     };
 
     useEffect(() => {
@@ -93,10 +82,6 @@ const CardPage = () => {
         setIsSelectionMode(!isSelectionMode);
     };
 
-    const handleCloseModal = () => {
-        setIsEditing(false);
-        setCurrentTransaction(null);
-    };
 
     const handleSelect = (transaction) => {
         setSelectedTransaction(transaction);
@@ -158,20 +143,6 @@ const CardPage = () => {
                         <p>Tem certeza de que deseja excluir esta transação?</p>
                         <button onClick={handleConfirmDelete}>Confirmar</button>
                         <button onClick={handleCancelDelete}>Cancelar</button>
-                    </div>
-                </div>
-            )}
-            {isEditing && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h2>Editar Transação</h2>
-                        <input
-                            type="text"
-                            value={newAmount}
-                            onChange={(e) => setNewAmount(e.target.value)}
-                        />
-                        <button onClick={handleSaveClick}>Salvar</button>
-                        <button onClick={handleCloseModal}>Cancelar</button>
                     </div>
                 </div>
             )}
