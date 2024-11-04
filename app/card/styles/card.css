@@ -1,0 +1,482 @@
+/* styles/global.css ou styles/globals.css */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background: #E4EDE3;
+}
+
+@media (max-width: 768px) {
+    .card-page {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* styles/card.css */
+
+.card-header {
+    background: #004D61;
+    height: 96px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.statement {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.transactions-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.transaction-divider {
+    width: 180px;
+    height: 0;
+    gap: 0;
+    border-top: 1px solid #47A13880;
+    opacity: 1;
+    margin-top: 10px;
+}
+
+.header-text {
+    margin-right: 10px;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+}
+
+.transaction {
+    margin-bottom: 10px;
+}
+
+.transaction-type {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    text-align: left;
+    padding-bottom: 8px;
+}
+
+.transaction-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.transaction-date {
+    font-family: Inter;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15.73px;
+    text-align: left;
+    color: #8B8B8B;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.transaction-amount {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.36px;
+    text-align: left;
+    padding-bottom: 8px;
+}
+
+.month-header {
+    font-family: Inter;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 15.73px;
+    text-align: left;
+    color: #47A138;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.avatar-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.middle-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+    width: 100%;
+}
+
+.current-date {
+    font-family: Inter;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15.73px;
+    margin-top: 8px;
+    color: #FFFFFF;
+}
+
+.date {
+    font-family: Inter;
+    font-size: 16x;
+    font-weight: 400;
+    line-height: 15.73px;
+    color: #FFFFFF;
+}
+
+.balance {
+    font-family: Inter;
+    font-size: 31px;
+    font-weight: 400;
+    line-height: 37.52px;
+    text-align: right;
+}
+
+.account-info {
+    position: absolute;
+    right: 103px;
+    bottom: 187px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #FFFFFF;
+}
+
+.balance-amount {
+    font-family: Inter;
+    font-size: 31px;
+    font-weight: 400;
+    line-height: 37.52px;
+}
+
+.icon {
+    margin-left: 25px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 50px;
+    opacity: 1;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.modal-content p {
+    font-size: 16px;
+    color: #666;
+}
+
+.modal-content input {
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.modal-content button:first-of-type {
+    background-color: #444444;
+    color: white;
+}
+
+.modal-content button:last-of-type {
+    background-color: #444444;
+    color: white;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-extrato {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.saldo {
+    width: 55px;
+    height: 24px;
+
+    position: absolute;
+    top: -40px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    opacity: 1;
+}
+
+.line {
+    width: 180px;
+    height: 0px;
+    border-top: 2px solid #FF5031;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    opacity: 1;
+}
+
+
+.account-type {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    display: flex;
+    text-align: right;
+    margin-top: 8px;
+    padding: 4px;
+}
+
+.card {
+    width: 690px;
+    height: 402px;
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 0;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #004D61;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+}
+
+.top-content {
+    align-self: flex-start;
+}
+
+.bottom-content {
+    align-self: flex-end;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.transaction-card {
+    width: 690px;
+    height: 402px;
+    position: absolute;
+    top: 546px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 0;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    background: #CBCBCB;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.greeting-text {
+    font-family: Inter;
+    font-size: 31px;
+    font-weight: 400;
+    line-height: 37.52px;
+    color: #FFFFFF;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 24px;
+    margin-left: 24px;
+}
+
+.right-column {
+    width: 282px;
+    height: 960px;
+    padding: 32px 24px;
+    border-radius: 8px;
+    background: white;
+    opacity: 1;
+    position: absolute;
+    top: 120px;
+    left: calc(100% - 306px);
+}
+
+@media (max-width: 768px) {
+    .right-column {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 20px auto;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.column-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30.26px;
+    text-align: left;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0;
+    padding-bottom: 24px;
+    border-radius: 8px 8px 8px 8px;
+}
+
+.select-transaction-type {
+    width: 355px;
+    height: 48px;
+    opacity: 1;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    background: #fff;
+    color: #444444;
+}
+
+.select-transaction-type option {
+    color: #444444;
+}
+
+.label-transaction-type {
+    width: 225px;
+    height: 16.29px;
+    opacity: 1;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.label-valor {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.36px;
+    text-align: left;
+    display: block;
+    margin-bottom: 4px;
+    padding: 4px;
+    border-radius: 4px;
+    color: #FFFFFF;
+}
+
+.input-valor {
+    width: 355px;
+    height: 48px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    background: #fff;
+}
+
+.btn-concluir {
+    width: 250px;
+    height: 48px;
+    gap: 0;
+    border-radius: 8px 8px 8px 8px;
+    border: 2px solid transparent;
+    background: #004D61;
+    color: #FFFFFF;
+    opacity: 1;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-concluir:hover {
+    background: #003b4d;
+}
