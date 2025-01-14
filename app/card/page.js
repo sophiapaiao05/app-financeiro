@@ -22,6 +22,8 @@ const CardPage = () => {
     const [newAmount, setNewAmount] = useState('');
     const [isSelectionMode, setIsSelectionMode] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filterType, setFilterType] = useState('Todos');
 
     const calculateBalance = (transactions) => {
         const total = transactions.reduce((acc, transaction) => {
@@ -82,10 +84,23 @@ const CardPage = () => {
         setIsSelectionMode(!isSelectionMode);
     };
 
-
     const handleSelect = (transaction) => {
         setSelectedTransaction(transaction);
     };
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleFilterChange = (event) => {
+        setFilterType(event.target.value);
+    };
+
+    const filteredTransactions = transactions.filter(transaction => {
+        const matchesSearchTerm = transaction.type.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesFilterType = filterType === 'Todos' || transaction.type === filterType;
+        return matchesSearchTerm && matchesFilterType;
+    });
 
     return (
         <div className="card-page">
@@ -124,12 +139,28 @@ const CardPage = () => {
                         <img src="/assets/delete.svg" alt="Novo Icon" className="icon-extrato" onClick={handleDeleteClick} />
                     </div>
                 </h2>
+                <select value={filterType} onChange={handleFilterChange} className="filter-select">
+                    <option value="Todos">Todos</option>
+                    <option value="Depósito">Depósito</option>
+                    <option value="Saque">Saque</option>
+
+                    <option value="Transferência">Transferência</option>
+                    <option value="Pagamento">Pagamento</option>
+                </select>
+                <input
+                    type="text"
+                    placeholder="Pesquisar transações..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    className="search-input"
+                />
                 <Statement
-                    transactions={transactions}
+                    transactions={filteredTransactions}
                     onEditClick={handleEditClick}
                     onDeleteClick={handleDeleteClick}
                     isSelectionMode={isSelectionMode}
                     onSelect={handleSelect}
+                    selectedTransaction={selectedTransaction}
                 />
             </div>
             <div className="transaction-card">
@@ -144,6 +175,12 @@ const CardPage = () => {
                         <button onClick={handleConfirmDelete}>Confirmar</button>
                         <button onClick={handleCancelDelete}>Cancelar</button>
                     </div>
+                    {filteredTransactions.length === 0 && (
+                        <div className="no-results">
+                            <img src="/assets/not-found.svg" alt="Nenhum resultado encontrado" className="no-results-icon" style={{ width: '50px', height: '50px' }} />
+                            <p>Nenhuma transação encontrada</p>
+                        </div>
+                    )}
                 </div>
             )}
         </div>

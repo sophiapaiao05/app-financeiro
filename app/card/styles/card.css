@@ -480,3 +480,37 @@ body {
 .btn-concluir:hover {
     background: #003b4d;
 }
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.filter-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #003b4d;
+    outline: none;
+}
+
+.filter-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0.6, 123, 255, 0.5);
+}
