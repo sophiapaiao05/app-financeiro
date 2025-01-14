@@ -20,7 +20,7 @@ Instruções para configurar o ambiente de desenvolvimento.
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/sophiapaiao05/app-financeiro
 ```
 cd seu-repositorio
 
