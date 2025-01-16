@@ -49,8 +49,15 @@ const Statement = ({ transactions, onEditClick, isSelectionMode, onSelect }) => 
                                 <div className="transaction-date">
                                     {new Date(transaction.date).toLocaleDateString('pt-BR')}
                                 </div>
+
                             </div>
                             <div className="transaction-amount">{transaction.amount}</div>
+                            <div className="transaction-category">{transaction.category}</div>
+                            {transaction.file && (
+                                <a href={transaction.file} target="_blank" rel="noopener noreferrer">
+                                    Ver Recibo
+                                </a>
+                            )}
                             {isSelectionMode && (
                                 <input
                                     type="radio"

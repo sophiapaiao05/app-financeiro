@@ -2,9 +2,13 @@
 
 import { useState } from 'react';
 
+const categories = ['Alimentação', 'Transporte', 'Lazer', 'Saúde', 'Educação'];
+
 const TransactionForm = ({ addTransaction }) => {
     const [value, setValue] = useState('');
     const [type, setType] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [file, setFile] = useState(null);
 
     const handleValueChange = (e) => {
         let inputValue = e.target.value;
@@ -15,13 +19,28 @@ const TransactionForm = ({ addTransaction }) => {
         setValue(`R$ ${inputValue}`);
     };
 
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
+    };
+
+    const handleFileUploadClick = () => {
+        document.getElementById('file-upload').click();
+    };
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (type && value) {
-            addTransaction(type, value);
+        if (type && value && selectedCategory) {
+            addTransaction(type, value, selectedCategory);
             setValue('');
             setType('');
+            setSelectedCategory(null);
+            setFile(null);
         }
+    };
+
+    const handleCategoryClick = (category) => {
+        setSelectedCategory(category);
     };
 
     return (
@@ -47,6 +66,29 @@ const TransactionForm = ({ addTransaction }) => {
                     onChange={handleValueChange}
                 />
             </label>
+            <div className="category-selection">
+                {categories.map((category) => (
+                    <div
+                        key={category}
+                        className={`category-item ${selectedCategory === category ? 'selected' : ''}`}
+                        onClick={() => handleCategoryClick(category)}
+                    >
+                        {category}
+                    </div>
+                ))}
+            </div>
+            <div className="file-upload-section">
+                <input
+                    type="file"
+                    id="file-upload"
+                    style={{ display: 'none' }}
+                    onChange={handleFileChange}
+                />
+                <button type="button" onClick={handleFileUploadClick} className="transaction-button">
+                    Upload de Recibo
+                </button>
+                {file && <span className="file-name">{file.name}</span>}
+            </div>
             <button type="submit" className="btn-concluir">Concluir transação</button>
         </form>
     );

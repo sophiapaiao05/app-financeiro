@@ -7,13 +7,10 @@ import TransactionForm from './components/transaction_form.js';
 import DateComponent from './components/date.js';
 import Statement from './components/statement.js';
 
+const getSuggestedCategory = (type) => { const categories = { 'Depósito': 'Receita', 'Saque': 'Despesa', 'Transferência': 'Despesa', 'Pagamento': 'Despesa' }; return categories[type] || 'Outros'; };
+
 const CardPage = () => {
-    const [transactions, setTransactions] = useState([
-        { id: 1, type: 'Depósito', amount: 'R$ 1.000,00', date: '2023-01-15' },
-        { id: 2, type: 'Saque', amount: 'R$ 200,00', date: '2023-02-20' },
-        { id: 3, type: 'Transferência', amount: 'R$ 300,00', date: '2023-03-10' },
-        { id: 4, type: 'Pagamento', amount: 'R$ 150,00', date: '2023-04-05' },
-    ]);
+    const [transactions, setTransactions] = useState([{ id: 1, type: 'Depósito', amount: 'R$ 1.000,00', date: '2023-01-15', category: getSuggestedCategory('Depósito') }, { id: 2, type: 'Saque', amount: 'R$ 200,00', date: '2023-02-20', category: getSuggestedCategory('Saque') }, { id: 3, type: 'Transferência', amount: 'R$ 300,00', date: '2023-03-10', category: getSuggestedCategory('Transferência') }, { id: 4, type: 'Pagamento', amount: 'R$ 150,00', date: '2023-04-05', category: getSuggestedCategory('Pagamento') }, { id: 5, type: 'Depósito', amount: 'R$ 1.000,00', date: '2023-01-15', category: getSuggestedCategory('Depósito') }, { id: 6, type: 'Saque', amount: 'R$ 200,00', date: '2023-02-20', category: getSuggestedCategory('Saque') }, { id: 7, type: 'Transferência', amount: 'R$ 300,00', date: '2023-03-10', category: getSuggestedCategory('Transferência') }, { id: 8, type: 'Depósito', amount: 'R$ 500,00', date: '2023-05-01', category: getSuggestedCategory('Depósito') }, { id: 9, type: 'Depósito', amount: 'R$ 750,00', date: '2023-06-15', category: getSuggestedCategory('Depósito') }, { id: 10, type: 'Depósito', amount: 'R$ 1.200,00', date: '2023-07-20', category: getSuggestedCategory('Depósito') },],);
 
     const [balance, setBalance] = useState(0);
     const [isEditing, setIsEditing] = useState(false);
@@ -33,12 +30,14 @@ const CardPage = () => {
         return total;
     };
 
-    const addTransaction = (type, amount) => {
+    const addTransaction = (type, amount, category, file) => {
         const newTransaction = {
             id: transactions.length + 1,
             type,
             amount,
-            date: new Date().toISOString().split('T')[0]
+            date: new Date().toISOString().split('T')[0],
+            category,
+            file: file ? URL.createObjectURL(file) : null,
         };
         setTransactions([...transactions, newTransaction]);
     };
@@ -143,7 +142,6 @@ const CardPage = () => {
                     <option value="Todos">Todos</option>
                     <option value="Depósito">Depósito</option>
                     <option value="Saque">Saque</option>
-
                     <option value="Transferência">Transferência</option>
                     <option value="Pagamento">Pagamento</option>
                 </select>
@@ -161,6 +159,7 @@ const CardPage = () => {
                     isSelectionMode={isSelectionMode}
                     onSelect={handleSelect}
                     selectedTransaction={selectedTransaction}
+                    className="scrollable-statement"
                 />
             </div>
             <div className="transaction-card">

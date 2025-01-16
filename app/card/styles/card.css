@@ -37,9 +37,10 @@ body {
 }
 
 .statement {
-    height: 100vh;
+    max-height: 700px;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .transactions-container {
@@ -101,6 +102,48 @@ body {
     line-height: 19.36px;
     text-align: left;
     padding-bottom: 8px;
+}
+
+.category-selection {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+
+.category-item {
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    padding: 5px 10px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.category-item.selected {
+    background-color: #a0a0a0;
+}
+
+.transaction-category {
+    flex: 1;
+    text-align: left;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    padding: 5px 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+.file-name {
+    font-size: 14px;
+    color: #666;
+}
+
+.transaction-button {
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 .month-header {
@@ -475,6 +518,7 @@ body {
     opacity: 1;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 10px;
 }
 
 .btn-concluir:hover {
@@ -513,4 +557,13 @@ body {
 .filter-select:focus {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0.6, 123, 255, 0.5);
+}
+
+.scrollable-statement {
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    /* Define a altura máxima */
+    overflow-y: auto;
+    /* Permite o scroll vertical */
 }
