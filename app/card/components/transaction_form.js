@@ -9,6 +9,7 @@ const TransactionForm = ({ addTransaction }) => {
     const [type, setType] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [file, setFile] = useState(null);
+    const [filePreview, setFilePreview] = useState(null);
 
     const handleValueChange = (e) => {
         let inputValue = e.target.value;
@@ -20,22 +21,24 @@ const TransactionForm = ({ addTransaction }) => {
     };
 
     const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
+        const uploadedFile = e.target.files[0];
+        setFile(uploadedFile);
+        setFilePreview(URL.createObjectURL(uploadedFile));
     };
 
     const handleFileUploadClick = () => {
         document.getElementById('file-upload').click();
     };
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         if (type && value && selectedCategory) {
-            addTransaction(type, value, selectedCategory);
+            addTransaction(type, value, selectedCategory, file);
             setValue('');
             setType('');
             setSelectedCategory(null);
             setFile(null);
+            setFilePreview(null);
         }
     };
 
@@ -88,6 +91,7 @@ const TransactionForm = ({ addTransaction }) => {
                     Upload de Recibo
                 </button>
                 {file && <span className="file-name">{file.name}</span>}
+                {filePreview && <img src={filePreview} alt="Preview" className="file-preview" />}
             </div>
             <button type="submit" className="btn-concluir">Concluir transação</button>
         </form>

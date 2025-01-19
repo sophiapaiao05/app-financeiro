@@ -1,20 +1,23 @@
 version: '3.8'
 
 services:
+  backend:
+    build:
+      context: /Users/sophia.paiao/sophia-app-financeiro/app/backend
+    ports:
+      - "5001:3000"
+    volumes:
+      - /Users/sophia.paiao/sophia-app-financeiro/app/backend:/app
+    environment:
+      - NODE_ENV=development
+
   frontend:
     build:
-      context: ./app
+      context: /Users/sophia.paiao/sophia-app-financeiro/app
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - backend
-
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
+    volumes:
+      - /Users/sophia.paiao/sophia-app-financeiro/app:/app
     environment:
-      - NODE_ENV=development
+      NODE_ENV: development

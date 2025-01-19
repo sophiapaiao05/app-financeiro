@@ -54,9 +54,11 @@ const Statement = ({ transactions, onEditClick, isSelectionMode, onSelect }) => 
                             <div className="transaction-amount">{transaction.amount}</div>
                             <div className="transaction-category">{transaction.category}</div>
                             {transaction.file && (
-                                <a href={transaction.file} target="_blank" rel="noopener noreferrer">
-                                    Ver Recibo
-                                </a>
+                                <div className="file-link">
+                                    <a href={transaction.file} target="_blank" rel="noopener noreferrer" className="ver-recibo-link">
+                                        Ver Recibo
+                                    </a>
+                                </div>
                             )}
                             {isSelectionMode && (
                                 <input

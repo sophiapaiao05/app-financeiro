@@ -13,10 +13,8 @@ const CardPage = () => {
     const [transactions, setTransactions] = useState([{ id: 1, type: 'Depósito', amount: 'R$ 1.000,00', date: '2023-01-15', category: getSuggestedCategory('Depósito') }, { id: 2, type: 'Saque', amount: 'R$ 200,00', date: '2023-02-20', category: getSuggestedCategory('Saque') }, { id: 3, type: 'Transferência', amount: 'R$ 300,00', date: '2023-03-10', category: getSuggestedCategory('Transferência') }, { id: 4, type: 'Pagamento', amount: 'R$ 150,00', date: '2023-04-05', category: getSuggestedCategory('Pagamento') }, { id: 5, type: 'Depósito', amount: 'R$ 1.000,00', date: '2023-01-15', category: getSuggestedCategory('Depósito') }, { id: 6, type: 'Saque', amount: 'R$ 200,00', date: '2023-02-20', category: getSuggestedCategory('Saque') }, { id: 7, type: 'Transferência', amount: 'R$ 300,00', date: '2023-03-10', category: getSuggestedCategory('Transferência') }, { id: 8, type: 'Depósito', amount: 'R$ 500,00', date: '2023-05-01', category: getSuggestedCategory('Depósito') }, { id: 9, type: 'Depósito', amount: 'R$ 750,00', date: '2023-06-15', category: getSuggestedCategory('Depósito') }, { id: 10, type: 'Depósito', amount: 'R$ 1.200,00', date: '2023-07-20', category: getSuggestedCategory('Depósito') },],);
 
     const [balance, setBalance] = useState(0);
-    const [isEditing, setIsEditing] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [currentTransaction, setCurrentTransaction] = useState(null);
-    const [newAmount, setNewAmount] = useState('');
     const [isSelectionMode, setIsSelectionMode] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');

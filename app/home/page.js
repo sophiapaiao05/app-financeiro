@@ -6,7 +6,6 @@ import Advantage from '../../components/design-system/advantage.js';
 import Footer from '../../components/design-system/footer.js';
 import '../styles.css';
 import advantagesData from '../../data/advantagesData';
-import { useRouter } from 'next/router';
 
 const Home = () => {
     const context = useContext(TransactionContext);
@@ -14,12 +13,6 @@ const Home = () => {
     if (!context) {
         return <div>Erro ao carregar o contexto.</div>;
     }
-
-    const { transactions } = context;
-
-    const balance = transactions.reduce((acc, transaction) => {
-        return transaction.type === 'deposito' ? acc + transaction.value : acc - transaction.value;
-    }, 0);
 
     return (
         <div className="page-container">

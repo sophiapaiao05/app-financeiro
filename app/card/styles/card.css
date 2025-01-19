@@ -50,6 +50,24 @@ body {
     box-sizing: border-box;
 }
 
+.file-link {
+    margin-top: 20px;
+    display: flex;
+    /* Para alinhar itens */
+    align-items: center;
+    /* Alinhar verticalmente */
+    justify-content: center;
+    /* Centralizar horizontalmente */
+}
+
+.ver-recibo-link {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15.73px;
+    text-align: left;
+    color: #8B8B8B;
+}
+
 .transaction-divider {
     width: 180px;
     height: 0;
