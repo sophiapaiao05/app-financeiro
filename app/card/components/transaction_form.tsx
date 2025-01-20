@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useState } from 'react';
 
 const categories = ['Alimentação', 'Transporte', 'Lazer', 'Saúde', 'Educação'];
@@ -8,8 +9,9 @@ const TransactionForm = ({ addTransaction }) => {
     const [value, setValue] = useState('');
     const [type, setType] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const [file, setFile] = useState(null);
-    const [filePreview, setFilePreview] = useState(null);
+    const [file, setFile] = useState<File | null>(null);
+    const [filePreview, setFilePreview] = useState<string | null>(null);
+
 
     const handleValueChange = (e) => {
         let inputValue = e.target.value;
@@ -20,14 +22,19 @@ const TransactionForm = ({ addTransaction }) => {
         setValue(`R$ ${inputValue}`);
     };
 
+
+
     const handleFileChange = (e) => {
         const uploadedFile = e.target.files[0];
         setFile(uploadedFile);
-        setFilePreview(URL.createObjectURL(uploadedFile));
+        setFilePreview(uploadedFile ? URL.createObjectURL(uploadedFile) : null);
     };
 
     const handleFileUploadClick = () => {
-        document.getElementById('file-upload').click();
+        const fileUploadElement = document.getElementById('file-upload');
+        if (fileUploadElement) {
+            fileUploadElement.click();
+        }
     };
 
     const handleSubmit = (e) => {
@@ -90,7 +97,7 @@ const TransactionForm = ({ addTransaction }) => {
                 <button type="button" onClick={handleFileUploadClick} className="transaction-button">
                     Upload de Recibo
                 </button>
-                {file && <span className="file-name">{file.name}</span>}
+                {file && typeof file !== 'undefined' && <span className="file-name">{file.name}</span>}
                 {filePreview && <img src={filePreview} alt="Preview" className="file-preview" />}
             </div>
             <button type="submit" className="btn-concluir">Concluir transação</button>

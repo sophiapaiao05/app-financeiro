@@ -18,7 +18,7 @@ const Statement = ({ transactions, onEditClick, isSelectionMode, onSelect }) => 
         if (selectedTransaction) {
             console.log('Valor de newAmount antes de salvar:', newAmount);
             const formattedAmount = newAmount.startsWith('R$') ? newAmount : `R$ ${newAmount}`;
-            const updatedTransaction = { ...selectedTransaction, amount: formattedAmount };
+            const updatedTransaction = { ...(selectedTransaction as object), amount: formattedAmount };
             onEditClick(updatedTransaction);
             setSelectedTransaction(null);
             setIsEditing(false);
