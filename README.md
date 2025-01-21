@@ -70,10 +70,16 @@ docker run -p 3000:3000 meu-frontend
 - Adição de arquivos
 - Visualização do arquivo
 - Edição e exclusão de transações
-- ● Uso de Docker Compose para orquestração de
+- Uso de Docker Compose para orquestração de
 múltiplos contêineres
+- Aplicação de tipagem estática para melhorar a robustez
+e manutenção do código
+- Client-Side Fetching
+-  Google Cloud Deploy (em dev)
 
 ## Tecnologias
 - Next.js
 - React
 - CSS
+- TypeScript
+- ESLint

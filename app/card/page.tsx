@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from 'react';
 import './styles/card.css';
 
@@ -7,18 +6,47 @@ import TransactionForm from './components/transaction_form.tsx';
 import DateComponent from './components/date.tsx';
 import Statement from './components/statement.tsx';
 
-const getSuggestedCategory = (type: string) => { const categories = { 'Depósito': 'Receita', 'Saque': 'Despesa', 'Transferência': 'Despesa', 'Pagamento': 'Despesa' }; return categories[type] || 'Outros'; };
+interface Transaction {
+    id: number;
+    type: string;
+    amount: string;
+    date: string;
+    category: string;
+}
 
-const CardPage = () => {
-    const [transactions, setTransactions] = useState([{ id: 1, type: 'Depósito', amount: 'R$ 1.000,00', date: '2023-01-15', category: getSuggestedCategory('Depósito') }, { id: 2, type: 'Saque', amount: 'R$ 200,00', date: '2023-02-20', category: getSuggestedCategory('Saque') }, { id: 3, type: 'Transferência', amount: 'R$ 300,00', date: '2023-03-10', category: getSuggestedCategory('Transferência') }, { id: 4, type: 'Pagamento', amount: 'R$ 150,00', date: '2023-04-05', category: getSuggestedCategory('Pagamento') }, { id: 5, type: 'Depósito', amount: 'R$ 1.000,00', date: '2023-01-15', category: getSuggestedCategory('Depósito') }, { id: 6, type: 'Saque', amount: 'R$ 200,00', date: '2023-02-20', category: getSuggestedCategory('Saque') }, { id: 7, type: 'Transferência', amount: 'R$ 300,00', date: '2023-03-10', category: getSuggestedCategory('Transferência') }, { id: 8, type: 'Depósito', amount: 'R$ 500,00', date: '2023-05-01', category: getSuggestedCategory('Depósito') }, { id: 9, type: 'Depósito', amount: 'R$ 750,00', date: '2023-06-15', category: getSuggestedCategory('Depósito') }, { id: 10, type: 'Depósito', amount: 'R$ 1.200,00', date: '2023-07-20', category: getSuggestedCategory('Depósito') },],);
+const getSuggestedCategory = (type: string): string => {
+    const categories: { [key: string]: string } = {
+        'Depósito': 'Receita',
+        'Saque': 'Despesa',
+        'Transferência': 'Despesa',
+        'Pagamento': 'Despesa'
+    };
+    return categories[type] || 'Outros';
+};
 
+
+const CardPage: React.FC = () => {
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [balance, setBalance] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
-    const [currentTransaction, setCurrentTransaction] = useState(setTransactions[0]);
+    const [currentTransaction, setCurrentTransaction] = useState<Transaction | null>(null);
     const [isSelectionMode, setIsSelectionMode] = useState(false);
-    const [selectedTransaction, setSelectedTransaction] = useState(null);
+    const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [filterType, setFilterType] = useState('Todos');
+
+    useEffect(() => {
+        const initialTransactions: Transaction[] = [
+            { id: 1, type: 'Depósito', amount: 'R$ 1.000,00', date: '2023-01-15', category: getSuggestedCategory('Depósito') },
+            { id: 2, type: 'Saque', amount: 'R$ 200,00', date: '2023-02-20', category: getSuggestedCategory('Saque') },
+            { id: 3, type: 'Transferência', amount: 'R$ 300,00', date: '2023-03-10', category: getSuggestedCategory('Transferência') },
+            { id: 4, type: 'Pagamento', amount: 'R$ 150,00', date: '2023-04-05', category: getSuggestedCategory('Pagamento') },
+            { id: 5, type: 'Depósito', amount: 'R$ 1.000,00', date: '2023-01-15', category: getSuggestedCategory('Depósito') },
+            { id: 6, type: 'Saque', amount: 'R$ 200,00', date: '2023-02-20', category: getSuggestedCategory('Saque') },
+        ];
+        setTransactions(initialTransactions);
+        setBalance(calculateBalance(initialTransactions));
+    }, []);
 
     const calculateBalance = (transactions) => {
         const total = transactions.reduce((acc, transaction) => {
@@ -61,7 +89,6 @@ const CardPage = () => {
             alert('Por favor, selecione uma transação para excluir.');
         }
     };
-
 
     const handleConfirmDelete = () => {
         if (currentTransaction) {
